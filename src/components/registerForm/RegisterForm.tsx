@@ -1,0 +1,138 @@
+import React, { useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
+
+const RegisterForm: React.FC = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cPassword, setCPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!username || !email || !password || !cPassword) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    if (password !== cPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "https://ai-chat-bot-summarizer.onrender.com/api/auth/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
+
+      if (response.status === 201) {
+        toast.success("Registered successfully!");
+      } else {
+        toast.error("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      if (
+        axios.isAxiosError(error) &&
+        error.response &&
+        error.response.status === 404
+      ) {
+        const { message } = error;
+        toast.error(message);
+      } else if (
+        axios.isAxiosError(error) &&
+        error.response &&
+        error.response.status === 400
+      ) {
+        const { message } = error.response.data;
+        toast.error(message);
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: "100%" }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white/30 p-8 rounded-lg shadow-md w-96 text-white"
+    >
+      <h2 className="text-2xl font-semibold mb-4">Register</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username" className="block text-sm font-medium">
+          Username:
+        </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="mt-1 block text-black p-2 w-full border rounded-md shadow-sm outline-none focus:ring focus:ring-opacity-50"
+        />
+        <br />
+        <label htmlFor="email" className="block text-sm font-medium">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="mt-1 block text-black p-2 w-full border rounded-md shadow-sm outline-none focus:ring focus:ring-opacity-50"
+        />
+        <br />
+        <label htmlFor="password" className="block text-sm font-medium">
+          Password:
+        </label>
+        <input
+          type="password"
+          value={password}
+          id="password"
+          onChange={(e) => setPassword(e.target.value)}
+          className="mt-1 block text-black p-2 w-full border rounded-md shadow-sm outline-none focus:ring focus:ring-opacity-50"
+        />
+        <br />
+        <label htmlFor="cPassword" className="block text-sm font-medium">
+          Confirm Password:
+        </label>
+        <input
+          type="password"
+          value={cPassword}
+          id="cPassword"
+          onChange={(e) => setCPassword(e.target.value)}
+          className="mt-1 block text-black p-2 w-full border rounded-md shadow-sm outline-none focus:ring focus:ring-opacity-50"
+        />
+        <br />
+        <button
+          type="submit"
+          disabled={loading}
+          className={`${loading && "bg-gray-400"} w-full bg-gradient-to-r from-indigo-600 to-purple-500 text-white py-2 px-4 rounded-md hover:scale-105 transition-all`}
+        >
+          {loading ? "Registering..." : "Register"}
+        </button>
+        <p className="mt-4 text-sm">
+          Already have an account?{" "}
+          <a href="/login" className="underline font-bold">
+            Login
+          </a>
+        </p>
+      </form>
+      <Toaster />
+    </motion.div>
+  );
+};
+
+export default RegisterForm;
