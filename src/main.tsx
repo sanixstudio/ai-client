@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./App.tsx";
 import Home from "./pages/Home/Home.tsx";//
-import { AiChatBot, Login, Register, Summarizer } from "./pages/index.ts";
+import { AiChatBot, Login, NotFound, Register, Summarizer } from "./pages/index.ts";
 import { AuthProvider } from "./context/AuthContext.js";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
@@ -33,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/summarizer",
     element: <Summarizer />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
 
