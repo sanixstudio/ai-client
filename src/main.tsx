@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./App.tsx";
-import Home from "./pages/Home/Home.tsx";
+import Home from "./pages/Home/Home.tsx";//
 import { AiChatBot, Login, Register, Summarizer } from "./pages/index.ts";
 import { AuthProvider } from "./context/AuthContext.js";
 import "@radix-ui/themes/styles.css";
@@ -41,7 +41,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <CookiesProvider>
       <AuthProvider>
         <Theme>
-          <RouterProvider router={router} />
+          <RouterProvider router={router} />//
         </Theme>
       </AuthProvider>
     </CookiesProvider>
