@@ -33,7 +33,7 @@ const Header: React.FC = () => {
   return (
     <div className="h-[60px] flex items-center justify-between px-4">
       <h1 className="text-3xl font-bold uppercase">
-        <Link to="/home" className="">
+        <Link to="/home" className="text-indigo-500">
           Summify
         </Link>
       </h1>

@@ -125,12 +125,12 @@ const RegisterForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         >
           {loading ? "Registering..." : "Register"}
         </Button>
-        <p className="mt-4 text-sm">
+        {/* <p className="mt-4 text-sm">
           Already have an account?{" "}
           <a href="/login" className="underline font-bold">
             Login
           </a>
-        </p>
+        </p> */}
       </form>
       <Toaster />
     </div>

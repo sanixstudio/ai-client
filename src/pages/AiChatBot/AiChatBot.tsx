@@ -12,7 +12,6 @@ const host = "chatgpt-ai-chat-bot.p.rapidapi.com";
 
 const AiChatBot: React.FC = () => {
   const [query, setQuery] = useState("");
-  // const user = "Adi";
 
   const { response, error, loading, handleSubmit } = useFetchAiData(
     query,
@@ -27,7 +26,7 @@ const AiChatBot: React.FC = () => {
         <title>AI Chat-Bot</title>
       </Helmet>
       <Root>
-        <div className="bg-gradient-to-r p-2 text-white from-indigo-500 to-purple-500 min-h-[calc(100vh-60px)] w-full flex flex-col items-center">
+        <div className="bg-gradient-to-r p-2 text-white from-sky-600 to-indigo-600 min-h-[calc(100vh-60px)] w-full flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -56,7 +55,7 @@ const AiChatBot: React.FC = () => {
             <button
               disabled={loading}
               type="submit"
-              className="p-5 border-2 rounded-md bg-gradient-to-r from-purple-700 to-pink-500 hover:shadow-2xl hover:opacity-90"
+              className="p-5 border-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 hover:shadow-2xl hover:opacity-90"
             >
               Submit
             </button>

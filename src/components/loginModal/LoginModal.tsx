@@ -14,14 +14,14 @@ const LoginModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
     <div className={modalClass}>
       <div className="modal-overlay absolute inset-0 bg-black opacity-50"></div>
 
-      <div className="modal-container bg-white w-11/12 bg-inherit md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+      <div className="modal-container relative bg-white w-11/12 bg-inherit md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         {/* Close button */}
         <button
           onClick={() => onClose()}
-          className="modal-close absolute top-0 right-0 cursor-pointer p-4"
+          className="modal-close absolute top-0 right-0 cursor-pointer p-1"
         >
           <svg
-            className="fill-current h-12 w-12 text-gray-500 bg-white"
+            className="fill-current h-10 w-10 text-gray-500 bg-white"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >

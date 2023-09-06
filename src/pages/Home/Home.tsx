@@ -5,7 +5,7 @@ import Root from "../../Layout/Layout";
 const Home:React.FC = () => {
   return (
     <Root>
-      <div className="bg-gradient-to-r text-white from-indigo-500 pb-10 to-purple-500 min-h-[calc(100vh-60px)] w-full flex flex-col items-center text-xl">
+      <div className="bg-gradient-to-r text-white from-sky-600 to-indigo-600 min-h-[calc(100vh-60px)] w-full flex flex-col items-center text-xl">
         <motion.h1
           initial={{ opacity: 0, y: "-100%" }}
           animate={{ opacity: 1, y: 0 }}
